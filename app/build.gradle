@@ -65,5 +65,9 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.0-alpha02"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0-alpha02"
 
+    //fancy toast msg
+    implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.6'
+
+
 
 }
