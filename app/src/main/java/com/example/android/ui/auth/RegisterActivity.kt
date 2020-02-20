@@ -1,13 +1,13 @@
-package com.example.android.UI
+package com.example.android.ui.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.android.R
 
-class LoginActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_register)
     }
 }
