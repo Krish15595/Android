@@ -2,14 +2,17 @@ package com.example.android.ui.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.R
 import com.example.android.databinding.ActivityLoginBinding
-import com.example.android.util.toast
 import com.example.android.util.toastError
 import com.example.android.util.toastInfo
 import com.example.android.util.toastSuccess
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(),AuthListenter {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,11 +23,14 @@ class LoginActivity : AppCompatActivity(),AuthListenter {
         viewModel.authListenter=this
     }
     override fun onStarted() {
-        toastInfo("Login Started",false)
+       // progress_circular.visibility=View.VISIBLE
     }
 
-    override fun onSuccess() {
-        toastSuccess("Login success",false)
+    override fun onSuccess(loginResponse: LiveData<String>) {
+
+        loginResponse.observe(this, Observer {
+            toastSuccess(it,false)
+        })
     }
 
     override fun onFailure(message: String) {
