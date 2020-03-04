@@ -3,6 +3,7 @@ package com.example.android.ui.auth
 import android.view.View
 import androidx.lifecycle.ViewModel
 import com.example.android.Repositories.UserRepository
+import com.example.android.util.Coroutines
 
 class AuthViewModel:ViewModel() {
     var email :String?=null
@@ -17,8 +18,20 @@ class AuthViewModel:ViewModel() {
             return
         }
 
-        val loginResponse = UserRepository().userLogin(email!!, password!!)
-        authListenter?.onSuccess(loginResponse)
+        Coroutines.main {
+            val respose= UserRepository().userLogin(email!!, password!!)
+            if(respose.isSuccessful)
+            {
+                authListenter?.onSuccess(respose.body()?.user!!)
+            }
+            else
+            {
+                authListenter?.onFailure(" Error code: ${respose.code()}")
+            }
+        }
+        /* the below commented are used when co-routines are not used*/
+//        val loginResponse = UserRepository().userLogin(email!!, password!!)
+//        authListenter?.onSuccess(loginResponse)
     }
 
 }
