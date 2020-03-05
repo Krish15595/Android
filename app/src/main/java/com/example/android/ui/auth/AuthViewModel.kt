@@ -29,7 +29,7 @@ class AuthViewModel(
                     userRepository.saveUser(it)
                     return@main
                 }
-                authListenter?.onFailure(authRespose.message!!)
+                authListenter?.onFailure(authRespose?.message.toString())
             }
             catch (e:ApiException)
             {

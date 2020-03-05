@@ -1,6 +1,7 @@
 package com.example.android.Helper;
 
 
+import com.example.android.Network.NetworkConnectionInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -17,14 +18,17 @@ public class RetrofitClient {
     private static Retrofit mRetrofit = null;
     private static Retrofit mRetrofitInstance = null;
 
+
     private static OkHttpClient getOkHttpClient() {
+
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+
         httpClient.readTimeout(120, TimeUnit.SECONDS)
                 .writeTimeout(120, TimeUnit.SECONDS)
                 .connectTimeout(120, TimeUnit.SECONDS);
-        return httpClient.addInterceptor(logging).build();
+        return httpClient.addInterceptor(new NetworkConnectionInterceptor(null)).build();
     }
 
     private static Gson gson = new GsonBuilder()
@@ -32,9 +36,7 @@ public class RetrofitClient {
             .setLenient()
             .create();
 
-
     public static Retrofit getClient(String base_url) {
-
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(base_url)
                 .client(getOkHttpClient())
@@ -111,4 +113,3 @@ public class RetrofitClient {
     }
 
 }
-

@@ -20,14 +20,14 @@ abstract class AppDatabase :RoomDatabase(){
         private var LOCK=Any()
 
         operator fun invoke(context: Context)= instance ?: synchronized(LOCK){
-            instance?.buildDatabase(context)
+            instance?:buildDatabase(context).also {
+                instance=it
+            }
         }
-
+        private fun buildDatabase(context: Context)=Room.databaseBuilder(
+            context.applicationContext,
+            AppDatabase::class.java,
+            "MyDatabase.db"
+        ).build()
     }
-
-    private fun buildDatabase(context: Context)=Room.databaseBuilder(
-        context.applicationContext,
-        AppDatabase::class.java,
-        Database_Name
-    ).build()
 }

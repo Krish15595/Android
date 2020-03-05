@@ -37,7 +37,7 @@ class UserRepository(
         })
         return loginResponse*/
     }
-    suspend fun saveUser(user: User)=db?.getUserDao()?.insert(user)
-     fun getUser()= db?.getUserDao()?.getUser()
+    suspend fun saveUser(user: User)= db.getUserDao().insert(user)
+     fun getUser()= db.getUserDao().getUser()
 
 }
