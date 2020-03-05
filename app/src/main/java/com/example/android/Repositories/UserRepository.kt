@@ -1,24 +1,21 @@
 package com.example.android.Repositories
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import com.example.android.Db.AppDatabase
+import com.example.android.Db.entities.User
 import com.example.android.Network.MyApi
+import com.example.android.Network.SafeApiRequest
 import com.example.android.Network.responses.AuthResponse
-import com.example.android.util.Constants
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
-class UserRepository{
-    private val mService by lazy { Constants.getApi() }
+class UserRepository(
+    private val myApi: MyApi,
+    private val db: AppDatabase
+):SafeApiRequest(){
     /* the below commented are used when co-routines are not used*/
 //    fun userLogin(email:String, password:String) : LiveData<String> {
 
-   suspend fun userLogin(email : String, password : String) : Response<AuthResponse> {
-
-        return mService.userLogin(email,password)
+   suspend fun userLogin(email : String, password : String) : AuthResponse {
+        return apiRequest {   myApi.userLogin(email,password) }
 
 
         /*val loginResponse=MutableLiveData<String>()
@@ -40,4 +37,7 @@ class UserRepository{
         })
         return loginResponse*/
     }
+    suspend fun saveUser(user: User)=db?.getUserDao()?.insert(user)
+     fun getUser()= db?.getUserDao()?.getUser()
+
 }

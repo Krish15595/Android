@@ -65,14 +65,13 @@ dependencies {
     kapt "androidx.room:room-compiler:2.2.4"
 
     //Android Navigation Architecture
-    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0-alpha02"
-    implementation "androidx.navigation:navigation-ui-ktx:2.3.0-alpha02"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0-alpha03"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.0-alpha03"
 
     //fancy toast msg
     implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.6'
 
     //material progressbar
-
 
 
 }

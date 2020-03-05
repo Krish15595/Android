@@ -10,7 +10,7 @@ import androidx.room.Query
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(user: User):Long
+    suspend fun insert(user: User):Long
 
     @Query("SELECT * FROM user where uid = $CURRENT_USER_ID")
     fun getUser():LiveData<User>
