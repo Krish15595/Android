@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.google.gms.google-services'
+
 //kotlin kapt and navigation safeargs plugin
 apply plugin: 'kotlin-kapt'
 
@@ -14,11 +16,13 @@ android {
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.example.android"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -37,6 +41,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
+
+    def multidex_version = "2.0.1"
+    implementation "androidx.multidex:multidex:$multidex_version"
 
     //material
     implementation 'com.google.android.material:material:1.1.0'
@@ -72,6 +79,12 @@ dependencies {
     implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.6'
 
     //material progressbar
+
+    //auth
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.facebook.android:facebook-login:5.15.3'
+
+
 
 
 }

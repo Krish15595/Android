@@ -1,6 +1,8 @@
 package com.example.android.Helper;
 
 
+import android.content.Context;
+
 import com.example.android.Network.NetworkConnectionInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,7 +21,9 @@ public class RetrofitClient {
     private static Retrofit mRetrofitInstance = null;
 
 
-    private static OkHttpClient getOkHttpClient() {
+
+
+    private static OkHttpClient getOkHttpClient(Context mContext) {
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -28,7 +32,7 @@ public class RetrofitClient {
         httpClient.readTimeout(120, TimeUnit.SECONDS)
                 .writeTimeout(120, TimeUnit.SECONDS)
                 .connectTimeout(120, TimeUnit.SECONDS);
-        return httpClient.addInterceptor(new NetworkConnectionInterceptor(null)).build();
+        return httpClient.addInterceptor(new NetworkConnectionInterceptor(mContext)).build();
     }
 
     private static Gson gson = new GsonBuilder()
@@ -36,10 +40,10 @@ public class RetrofitClient {
             .setLenient()
             .create();
 
-    public static Retrofit getClient(String base_url) {
+    public static Retrofit getClient(String base_url,Context mContext) {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(base_url)
-                .client(getOkHttpClient())
+                .client(getOkHttpClient(mContext))
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
@@ -47,69 +51,5 @@ public class RetrofitClient {
         return mRetrofit;
     }
 
-    public static Retrofit getOTPClient(String base_url) {
-        mRetrofit = new Retrofit.Builder()
-                .baseUrl(base_url)
-                .client(getOkHttpClient())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-
-        return mRetrofit;
-    }
-
-    public static Retrofit getMapClient(String base_url) {
-        if (mRetrofit == null) {
-            mRetrofit = new Retrofit.Builder()
-                    .baseUrl(base_url)
-                    .client(getOkHttpClient())
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .build();
-        }
-        return mRetrofit;
-    }
-
-
-    public static Retrofit getmRetrofit(String base_url) {
-
-        if (mRetrofitInstance == null) {
-            mRetrofitInstance = new Retrofit.Builder()
-                    .baseUrl(base_url)
-                    .client(getOkHttpClient())
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .build();
-        }
-        return mRetrofitInstance;
-    }
-
-    // for SMS
-    public static Retrofit getSMSClient(String base_url) {
-
-        if (mRetrofit == null) {
-            mRetrofit = new Retrofit.Builder()
-                    .baseUrl(base_url)
-                    .client(getOkHttpClient())
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .build();
-        }
-        return mRetrofit;
-    }
-
-    // for SMS
-    public static Retrofit getImageClient(String base_url) {
-
-        if (mRetrofit != null) {
-            mRetrofit = new Retrofit.Builder()
-                    .baseUrl(base_url)
-                    .client(getOkHttpClient())
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .build();
-        }
-        return mRetrofit;
-    }
 
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.android.Repositories.UserRepository
 import com.example.android.util.ApiException
 import com.example.android.util.Coroutines
+import com.example.android.util.NoInternetException
 
 class AuthViewModel(
     private val userRepository: UserRepository
@@ -34,6 +35,10 @@ class AuthViewModel(
             catch (e:ApiException)
             {
                 authListenter?.onFailure(e.message!!)
+            }
+            catch (e:NoInternetException)
+            {
+                authListenter?.onFailure(e.message.toString())
             }
 
             //uncomment with coroutines
