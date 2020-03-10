@@ -25,7 +25,7 @@ class AuthViewModel(
         Coroutines.main {
             try {
                 val authRespose= userRepository.userLogin(email!!, password!!)
-                authRespose.user?.let {
+                authRespose.user.let {
                     authListenter?.onSuccess(it)
                     userRepository.saveUser(it)
                     return@main
@@ -55,5 +55,6 @@ class AuthViewModel(
 //        val loginResponse = UserRepository().userLogin(email!!, password!!)
 //        authListenter?.onSuccess(loginResponse)
     }
+
 
 }

@@ -81,8 +81,8 @@
             app:layout_constraintVertical_bias="0.05"
             app:srcCompat="@mipmap/facebook" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageView2"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/buttonGoogleLogin"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
@@ -262,7 +262,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.39"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/buttonGoogleLogin"
             app:layout_constraintTop_toBottomOf="@+id/editText2"
             app:layout_constraintVertical_bias="0.152" />
 
