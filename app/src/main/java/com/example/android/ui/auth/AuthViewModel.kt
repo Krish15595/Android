@@ -2,6 +2,7 @@ package com.example.android.ui.auth
 
 import android.view.View
 import androidx.lifecycle.ViewModel
+import com.example.android.Db.entities.User
 import com.example.android.Repositories.UserRepository
 import com.example.android.util.ApiException
 import com.example.android.util.Coroutines
@@ -14,6 +15,11 @@ class AuthViewModel(
     var password:String?=null
     var authListenter:AuthListenter?=null
     fun getLoggedInUser() = userRepository.getUser()
+    fun saveUser(user: User){
+        Coroutines.main {
+            userRepository.saveUser(user)
+        }
+    }
     fun onLoginButtonClicked(view:View){
         authListenter?.onStarted()
         if(email.isNullOrEmpty() || password.isNullOrEmpty())

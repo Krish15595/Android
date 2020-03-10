@@ -3,4 +3,7 @@
     <string name="email">Enter Email</string>
     <string name="facebook_app_id">2512440482363214</string>
     <string name="fb_login_protocol_scheme">fb2512440482363214</string>
+
+    <string name="title_activity_profile">Profile</string>
+    <string name="action_settings">Settings</string>
 </resources>
