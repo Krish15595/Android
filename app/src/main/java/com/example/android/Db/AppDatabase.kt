@@ -4,15 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.android.Db.entities.User
-import com.example.android.Db.entities.UserDao
+import com.example.android.Db.entities.*
 
 @Database(
-    entities = [User::class],
+    entities = [User::class,Dept_info::class,Course_info::class,Student_info::class],
     version = 1
 )
 abstract class AppDatabase :RoomDatabase(){
     abstract fun getUserDao() :UserDao
+    abstract fun getDeptDao() :DeptDao
+    abstract fun getCourseDao() :CourseDao
+    abstract fun getStudentDao() :StudentDao
+
     var Database_Name="MyDatabase.db"
     companion object{
         @Volatile

@@ -134,6 +134,10 @@ class LoginActivity : AppCompatActivity(), AuthListenter {
                 Log.w("failed", "Google sign in failed", e)
                 // ...
             }
+            catch (e:Exception)
+            {
+                Log.w("failed", "Google sign in failed", e)
+            }
         }
         else
         {
