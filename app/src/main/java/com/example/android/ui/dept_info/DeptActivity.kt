@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.Adaptor.DepListAdaptor
 import com.example.android.Db.AppDatabase
 import com.example.android.Db.entities.Dept_info
-import com.example.android.Model.DeptModel
 import com.example.android.R
 import com.example.android.Repositories.DeptRepository
 import com.example.android.databinding.ActivityDeptBinding
@@ -20,7 +20,7 @@ class DeptActivity : AppCompatActivity(), DeptListenter {
 
 
     private lateinit var viewModels: DeptViewModel
-    private lateinit var deptList:ArrayList<DeptModel>
+    private lateinit var deptList:ArrayList<Dept_info>
     private lateinit var mAdaptor: DepListAdaptor
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +28,7 @@ class DeptActivity : AppCompatActivity(), DeptListenter {
         val mService by lazy { Constants.getApi(this@DeptActivity) }
         deptList= arrayListOf()
 
-        val layoutManager = LinearLayoutManager(this@DeptActivity)
-        rc_dept.layoutManager = layoutManager
-        mAdaptor= DepListAdaptor(deptList )
-        rc_dept.adapter=mAdaptor
+
         val db = AppDatabase(this)
         val repository = DeptRepository(mService, db)
         val factory = DeptViewModelFactory(repository)
@@ -40,31 +37,35 @@ class DeptActivity : AppCompatActivity(), DeptListenter {
     }
 
     private fun initHomeViewModel(factory: DeptViewModelFactory) {
+       /* val layoutManager = LinearLayoutManager(this@DeptActivity)
+        rc_dept.layoutManager = layoutManager
+        mAdaptor= DepListAdaptor(deptList )
+        rc_dept.adapter=mAdaptor*/
         val binding: ActivityDeptBinding = DataBindingUtil.setContentView(this, R.layout.activity_dept)
         viewModels = ViewModelProvider(this, factory).get(DeptViewModel::class.java)
         binding.viewModel = viewModels
         viewModels.deptListenter = this
-        /*viewModels.getCourse().observe(this, Observer { dept ->
-           // Log.d("data","${dept[dept.size-1].d_id}")
-            deptList.clear()
-            deptList= dept as MutableList<Dept_info>
-            mAdaptor.notifyItemChanged(deptList.size-1)
+        viewModels.getDept().observe(this, Observer { dept ->
+            Log.d("data","${dept[dept.size-1].d_name}")
+            deptList= dept as ArrayList<Dept_info>
             //viewData(deptList)
+            mAdaptor=DepListAdaptor(deptList)
+            val layoutManager = LinearLayoutManager(this@DeptActivity)
+            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            rc_dept.layoutManager = layoutManager
+            rc_dept.setHasFixedSize(true)
+//        mAdaptor= DepListAdaptor(this, deptList)
+            rc_dept.setAdapter(mAdaptor)
 
-        })*/
-        var deptInfo=DeptModel("1","test")
-        deptList.add(deptInfo)
-        deptList.add(deptInfo)
-        deptList.add(deptInfo)
-        deptList.add(deptInfo)
-        deptList.add(deptInfo)
-        val adaptor=DepListAdaptor(deptList)
-        val layoutManager = LinearLayoutManager(this@DeptActivity)
+        })
+
+
+/*        val layoutManager = LinearLayoutManager(this@DeptActivity)
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rc_dept.layoutManager = layoutManager
         rc_dept.setHasFixedSize(true)
-//        mAdaptor= DepListAdaptor(this, deptList)
-        rc_dept.setAdapter(adaptor)
+        rc_dept.adapter=DepListAdaptor(deptList)*/
+
 
        // Log.d("deplist",deptList[deptList.size-1].d_name)
 
@@ -80,6 +81,7 @@ class DeptActivity : AppCompatActivity(), DeptListenter {
 
     override fun onSuccess(dept: Dept_info) {
         Log.d("deptList","${dept.d_id}")
+
 
     }
 

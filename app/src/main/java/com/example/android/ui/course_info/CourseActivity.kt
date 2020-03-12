@@ -14,7 +14,7 @@ import com.example.android.databinding.ActivityCourseBinding
 import com.example.android.util.Constants
 import kotlinx.android.synthetic.main.activity_dept.*
 
-class CourseActivity : AppCompatActivity() {
+class CourseActivity : AppCompatActivity(),CourseListenter {
     private lateinit var viewModels: CourseViewModel
     private lateinit var list:ArrayList<Course_info>
     //private lateinit var mAdaptor: Course
@@ -44,6 +44,18 @@ class CourseActivity : AppCompatActivity() {
 
         })
 
+
+    }
+
+    override fun onStarted() {
+
+    }
+
+    override fun onSuccess(courseInfo: Course_info) {
+
+    }
+
+    override fun onFailure(message: String) {
 
     }
 }

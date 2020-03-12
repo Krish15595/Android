@@ -14,7 +14,6 @@ import com.example.android.R
 import com.example.android.Repositories.UserRepository
 import com.example.android.databinding.ActivityHomeBinding
 import com.example.android.databinding.ActivityLoginBinding
-import com.example.android.ui.Student.StudentActivity
 import com.example.android.ui.auth.AuthListenter
 import com.example.android.ui.course_info.CourseActivity
 import com.example.android.ui.dept_info.DeptActivity
@@ -49,11 +48,6 @@ class HomeActivity : AppCompatActivity(), AuthListenter {
             }
         }
 
-        btnStudent.setOnClickListener {
-            Intent(this, StudentActivity::class.java).also {
-                startActivity(it)
-            }
-        }
 
     }
 
