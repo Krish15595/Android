@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.android.Adaptor.DepListAdaptor
+import com.example.android.Adaptor.DepListAdapter
 import com.example.android.Db.AppDatabase
 import com.example.android.Db.entities.Dept_info
 import com.example.android.R
@@ -21,7 +21,7 @@ class DeptActivity : AppCompatActivity(), DeptListenter {
 
     private lateinit var viewModels: DeptViewModel
     private lateinit var deptList:ArrayList<Dept_info>
-    private lateinit var mAdaptor: DepListAdaptor
+    private lateinit var mAdapter: DepListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dept)
@@ -49,13 +49,13 @@ class DeptActivity : AppCompatActivity(), DeptListenter {
             Log.d("data","${dept[dept.size-1].d_name}")
             deptList= dept as ArrayList<Dept_info>
             //viewData(deptList)
-            mAdaptor=DepListAdaptor(deptList)
+            mAdapter= DepListAdapter(deptList)
             val layoutManager = LinearLayoutManager(this@DeptActivity)
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             rc_dept.layoutManager = layoutManager
             rc_dept.setHasFixedSize(true)
 //        mAdaptor= DepListAdaptor(this, deptList)
-            rc_dept.setAdapter(mAdaptor)
+            rc_dept.setAdapter(mAdapter)
 
         })
 
@@ -79,9 +79,9 @@ class DeptActivity : AppCompatActivity(), DeptListenter {
 
     }
 
-    override fun onSuccess(dept: Dept_info) {
-        Log.d("deptList","${dept.d_id}")
-
+    override fun onSuccess(deptInfo: Dept_info) {
+        Log.d("deptList","${deptInfo.d_id}")
+        et_deptname.setText("")
 
     }
 

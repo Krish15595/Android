@@ -16,7 +16,7 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/deptname"
+        android:id="@+id/et_deptname"
         android:text="@={viewModel.et_deptname}"
         android:hint="Add department Name"
 

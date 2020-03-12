@@ -12,24 +12,20 @@ import java.lang.Exception
 class CourseViewModel(
     private val courseRepository: CourseRepository
 ): ViewModel() {
-    var et_deptname: String? = null
+    var et_coursename: String? = null
     var deptListenter: CourseListenter?=null
     fun getCourse() = courseRepository.getCourse()
-    fun saveUser(courseInfo: Course_info){
-        Coroutines.main {
-            courseRepository.saveUser(courseInfo)
-        }
-    }
-    fun onAddDeptButtonClicked(view: View) {
+
+    fun onAddCourseButtonClicked(view: View) {
         deptListenter?.onStarted()
-        if (et_deptname.isNullOrEmpty()) {
+        if (et_coursename.isNullOrEmpty()) {
             deptListenter?.onFailure("Enter Name to proceed")
             return
         }
 
         Coroutines.main {
             try {
-                val model = Course_info(null, et_deptname)
+                val model = Course_info(null, et_coursename)
                 courseRepository.saveUser(model)
                 deptListenter?.onSuccess(model)
             }

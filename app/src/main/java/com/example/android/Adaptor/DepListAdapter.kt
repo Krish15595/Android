@@ -8,14 +8,8 @@ import com.example.android.Db.entities.Dept_info
 import com.example.android.R
 import kotlinx.android.synthetic.main.row_singlename.view.*
 
-
-
-
-
-
-
-class DepListAdaptor(val deptList: ArrayList<Dept_info>):RecyclerView.Adapter<DepListAdaptor.ViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DepListAdaptor.ViewHolder {
+class DepListAdapter(val deptList: ArrayList<Dept_info>):RecyclerView.Adapter<DepListAdapter.ViewHolder>(){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DepListAdapter.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val listItem = layoutInflater.inflate(R.layout.row_singlename, parent, false)
         val viewHolder = ViewHolder(listItem)
@@ -31,7 +25,7 @@ class DepListAdaptor(val deptList: ArrayList<Dept_info>):RecyclerView.Adapter<De
         return deptList.size
     }
 
-    override fun onBindViewHolder(holder: DepListAdaptor.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DepListAdapter.ViewHolder, position: Int) {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         holder.name.text=deptList[position].d_name
     }

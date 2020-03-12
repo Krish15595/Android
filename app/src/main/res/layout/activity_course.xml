@@ -16,8 +16,8 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/deptname"
-            android:text="@={viewModel.et_deptname}"
+            android:id="@+id/et_coursename"
+            android:text="@={viewModel.et_coursename}"
             android:hint="Add department Name"
 
             >
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/AddDeptBtn"
-            android:onClick="@{viewModel::onAddDeptButtonClicked}"
+            android:onClick="@{viewModel::onAddCourseButtonClicked}"
             android:text="Add Dept"
             android:background="@drawable/profile_bk"
             >
@@ -37,7 +37,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rc_dept">
+            android:id="@+id/rc_course">
         </androidx.recyclerview.widget.RecyclerView>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
