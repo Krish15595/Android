@@ -35,7 +35,6 @@
                 style="@style/profileDetailsTextMain" />
 
             <TextView
-                android:text="developer"
                 android:id="@+id/name"
                 android:layout_toRightOf="@id/nameImageView"
                 style="@style/profileDetailsMiniText" />
@@ -49,15 +48,12 @@
                 android:src="@drawable/ic_mobile"
                 style="@style/profileDetailsImage" />
 
-            <TextView
-                android:text="Mobile"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDepartMent"
+                style="@style/profileDetailsTextMain"
                 android:layout_toRightOf="@id/mobileImageView"
-                style="@style/profileDetailsTextMain"/>
+                android:text="Department" />
 
-            <TextView
-                android:text="+91-8129999999"
-                android:layout_toRightOf="@id/mobileImageView"
-                style="@style/profileDetailsMiniText" />
 
         </RelativeLayout>
 
@@ -68,16 +64,12 @@
                 android:src="@drawable/ic_email"
                 style="@style/profileDetailsImage" />
 
-            <TextView
-                android:text="Email"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCourse"
+                style="@style/profileDetailsTextMain"
                 android:layout_toRightOf="@id/emailImageView"
-                style="@style/profileDetailsTextMain" />
+                android:text="Course" />
 
-            <TextView
-                android:text="developer@appsnipp.com"
-                android:id="@+id/email"
-                android:layout_toRightOf="@id/emailImageView"
-                style="@style/profileDetailsMiniText" />
 
         </RelativeLayout>
 
@@ -88,15 +80,12 @@
                 android:src="@drawable/ic_address"
                 style="@style/profileDetailsImage" />
 
-            <TextView
-                android:text="Address"
+            <androidx.appcompat.widget.AppCompatButton
+                android:text="Student"
+                android:id="@+id/btnStudent"
                 android:layout_toRightOf="@id/addressImageView"
                 style="@style/profileDetailsTextMain" />
 
-            <TextView
-                android:text="Avenue 2nd Street NW SY."
-                android:layout_toRightOf="@id/addressImageView"
-                style="@style/profileDetailsMiniText" />
 
         </RelativeLayout>
 
